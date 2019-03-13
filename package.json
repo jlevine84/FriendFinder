@@ -1,0 +1,23 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "An app to find other nerdy friends",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlevine84/FriendFinder.git"
+  },
+  "author": "Jeff Levine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlevine84/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/jlevine84/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
