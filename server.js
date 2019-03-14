@@ -1,19 +1,17 @@
 const express = require("express")
 const path = require("path")
-
-const server = express();
-
-//use env variable for port
-const PORT = 8080;
-
-server.use(express.urlencoded({ extended: true}));
-server.use(express.json());
-
-server.get("*", (req,res)=>{
-    res.sendFile(path.join(__dirname, "app/public/home.html"));
-})
+const htmlRoutes = require("./app/routing/htmlRoutes")
+const apiRoutes = require("./app/routing/apiRoutes")
+const gamers = require("./app/data/gamers")
+const app = express();
 
 
-server.listen(PORT, ()=>{
+const PORT = process.env.PORT || 8080;
+
+htmlRoutes(app, path)
+apiRoutes(app, express, gamers)
+//API Routing
+
+app.listen(PORT, ()=>{
     console.log(`Listening on Port: ${PORT}`)
 })
