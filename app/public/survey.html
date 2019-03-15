@@ -20,7 +20,7 @@
             <h3>Enter your Class</h3>
             <input type="text" id="class" class="form-control" required>
 
-            <h3>Tell us a bit more about yourself! (Optional)</h3>
+            <h3>Tell us a bit more about character! (Optional)</h3>
             <input type="text" id="bio" class="form-control">
             <hr>
 
@@ -213,8 +213,8 @@
               
               let h5mostLike = $("<h5>").text("Birds of a feather flock together! Here's your bird!")
               let pname2 = $("<p>").text("Name: " + data[1].name)
-              let pclass2 = $("<p>").text("Name: " + data[1].class)
-              let pbio2 = $("<p>").text("Name: " + data[1].bio)
+              let pclass2 = $("<p>").text("Class: " + data[1].class)
+              let pbio2 = $("<p>").text("Bio: " + data[1].bio)
               $(".modal-body").append(h5mostLike, pname2, pclass2, pbio2)
 
               $("#myModal").modal("toggle")
