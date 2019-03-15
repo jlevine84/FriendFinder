@@ -8,10 +8,10 @@ module.exports = function(app, express, gamers) {
 
     app.post("/api/list", (req, res)=> {
         const character = req.body;
-        console.log(character);
         var bestFit;
-
-        let totalArray = []
+        var mostLike;
+        var returnArray = [];
+        let totalArray = [];
         
         gamers.forEach(element => {
             let total = 0;
@@ -33,8 +33,15 @@ module.exports = function(app, express, gamers) {
                 if(totalArray[i] > totalArray[n])   bestFit = i
             }
         }
+        for (i = 0; i < totalArray.length; i++) {
+            for (n = 1; n < totalArray.length; n++) {
+                if(totalArray[i] < totalArray[n])   mostLike = i
+            }
+        }
+        returnArray.push(gamers[bestFit])
+        returnArray.push(gamers[mostLike])
 
-        res.json(gamers[bestFit]);
+        res.json(returnArray);
         gamers.push(character);
     })
 }

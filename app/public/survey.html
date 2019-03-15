@@ -9,7 +9,7 @@
     </head>
     <body>
         
-        <div class="container">
+        <div class="container" style="background-color: rgb(216, 216, 216)">
             
             <h1>Find your next party member, Adventurer!</h1>
             <hr>
@@ -24,7 +24,7 @@
             <input type="text" id="bio" class="form-control">
             <hr>
 
-            <h3><strong>Question 1</strong></h3>
+            <h3><strong>Scenario 1</strong></h3>
             <h5>You value your Martial Skills above Magical Powers</h5>
             <select class="chosen-select" id="q1">
               <option value=""></option>
@@ -36,7 +36,7 @@
             </select>
             
         
-            <h3><strong>Question 2</strong></h3>
+            <h3><strong>Scenario 2</strong></h3>
             <h5>You encounter an Orc! You charge in and destroy it!</h5>
             <select class="chosen-select" id="q2">
               <option value=""></option>
@@ -48,7 +48,7 @@
             </select>
         
         
-            <h3><strong>Question 3</strong></h3>
+            <h3><strong>Scenario 3</strong></h3>
             <h5>You encounter a Chest! Open it?</h5>
             <select class="chosen-select" id="q3">
               <option value=""></option>
@@ -60,7 +60,7 @@
             </select>
         
         
-            <h3><strong>Question 4</strong></h3>
+            <h3><strong>Scenario 4</strong></h3>
             <h5>You just completed a quest! What do you use your gold on?</h5>
             <select class="chosen-select" id="q4">
               <option value=""></option>
@@ -72,7 +72,7 @@
             </select>
         
         
-            <h3><strong>Question 5</strong></h3>
+            <h3><strong>Scenario 5</strong></h3>
             <h5>When out of the dungeon you prefer a quiet place to unwind.</h5>
             <select class="chosen-select" id="q5">
               <option value=""></option>
@@ -84,7 +84,7 @@
             </select>
         
         
-            <h3><strong>Question 6</strong></h3>
+            <h3><strong>Scenario 6</strong></h3>
             <h5>A Dragon! What is your next course of action?!</h5>
             <select class="chosen-select" id="q6">
               <option value=""></option>
@@ -96,7 +96,7 @@
             </select>
         
         
-            <h3><strong>Question 7</strong></h3>
+            <h3><strong>Scenario 7</strong></h3>
             <h5>You've come to a room with a locked door and a puzzle cube.</h5>
             <select class="chosen-select" id="q7">
               <option value=""></option>
@@ -107,7 +107,7 @@
               <option value="5">5 (Puzzles and Locks? Bash the door down!)</option>
             </select>
         
-            <h3><strong>Question 8</strong></h3>
+            <h3><strong>Scenario 8</strong></h3>
             <h5>You are in the Duskwood Forest. What is your next course of action?</h5>
             <select class="chosen-select" id="q8">
               <option value=""></option>
@@ -118,7 +118,7 @@
               <option value="5">5 (Trees? Who cares?! Where's an foe to smash!)</option>
             </select>
         
-            <h3><strong>Question 9</strong></h3>
+            <h3><strong>Scenario 9</strong></h3>
             <h5>You've found a map!</h5>
             <select class="chosen-select" id="q9">
               <option value=""></option>
@@ -129,7 +129,7 @@
               <option value="5">5 (Paper? Use it for kindling!)</option>
             </select>
         
-            <h3><strong>Question 10</strong></h3>
+            <h3><strong>Scenario 10</strong></h3>
             <h5>You are a master of the Arcane! An Axe? So uncivilized.</h5>
             <select class="chosen-select" id="q10">
               <option value=""></option>
@@ -142,8 +142,8 @@
             <hr>
             <button type="submit" class="btn btn-primary btn-lg" id="submit">Submit</button>
             <hr>
-            <a href="/api/list">LFG API </a> |
-            <a href="https://github.com/jlevine84/">GitHub Repo</a>
+            <a style="font-weight: bold" href="/api/list">LFG API </a> |
+            <a style="font-weight: bold" href="https://github.com/jlevine84/">GitHub Repo</a>
         </div>
 
         <div class="modal" tabindex="-1" role="dialog" id="myModal">
@@ -155,8 +155,8 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
-                  <p><strong>Thank you for using LFG Finder! Based on your answers your party will be best rounded with:</strong></p>
+                <div class="modal-body" style="font-weight: bold">
+                  <p><strong>Thank you for using LFG Finder! Here are your results:</strong></p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -205,11 +205,18 @@
 
             $.post("/api/list", character, (data)=> {
               console.log(data)
-              let pname = $("<p>").text("Name: " + data.name)
-              let pclass = $("<p>").text("Class: " + data.class)
-              let pbio = $("<p>").text("Bio: " + data.bio)
-              $(".modal-body").append(pname, pclass, pbio)
+              let h5bestFit = $("<h5>").text("Best choice to round out your party!")
+              let pname = $("<p>").text("Name: " + data[0].name)
+              let pclass = $("<p>").text("Class: " + data[0].class)
+              let pbio = $("<p>").text("Bio: " + data[0].bio)
+              $(".modal-body").append(h5bestFit, pname, pclass, pbio)
               
+              let h5mostLike = $("<h5>").text("Birds of a feather flock together! Here's your bird!")
+              let pname2 = $("<p>").text("Name: " + data[1].name)
+              let pclass2 = $("<p>").text("Name: " + data[1].class)
+              let pbio2 = $("<p>").text("Name: " + data[1].bio)
+              $(".modal-body").append(h5mostLike, pname2, pclass2, pbio2)
+
               $("#myModal").modal("toggle")
               
               resetValues();
